@@ -32,7 +32,19 @@ class ContactViewModel(application: Application) : AndroidViewModel(application)
     }
 
     //Update and existing contact in the database
-    fun updateContact(){}
-    fun deleteContact(){}
+    fun updateContact(
+        contact: Contact
+    ){
+        viewModelScope.launch{
+            dao.updateContact(contact)
+        }
+    }
+    fun deleteContact(
+        contact: Contact
+    ){
+        viewModelScope.launch{
+            dao.deleteContact(contact)
+        }
+    }
 
 }
