@@ -39,9 +39,7 @@ fun ContactListScreen(
     onContactClick: (Contact) -> Unit
 ) {
     val contacts by viewModel.contacts.collectAsState()
-
     var showAddDialog by remember { mutableStateOf(false) }
-
     if (showAddDialog) {
         ContactDialog(
             contact = null,
@@ -71,63 +69,35 @@ fun ContactListScreen(
     ) { padding ->
         if (contacts.isEmpty()) {
             Box(
-
                 modifier = Modifier
-
                     .fillMaxSize()
-
                     .padding(padding),
-
                 contentAlignment = Alignment.Center
-
             ) {
-
                 Text(
-
                     text = "No contacts yet. \nTap + to add one.",
-
                     textAlign = TextAlign.Center,
-
                     color = MaterialTheme.colorScheme.onSurfaceVariant
-
                 )
-
             }
-
         } else {
 
             LazyColumn(
-
                 modifier = Modifier
-
                     .fillMaxSize()
-
                     .padding(padding),
-
                 contentPadding = PaddingValues(vertical = 8.dp)
 
             ) {
-
                 items(contacts, key = { it.id }) { contact ->
-
                     ContactItem(
-
                         contact = contact,
-
                         onClick = { onContactClick(contact) },
-
                         onDelete = { viewModel.deleteContact(contact) }
 
                     )
-
-
                 }
-
             }
-
         }
-
     }
-
-
 }
